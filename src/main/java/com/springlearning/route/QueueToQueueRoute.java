@@ -30,7 +30,6 @@ public QueueToQueueRoute(@Qualifier("myObjectMapper") ObjectMapper objectMapper,
 	@Override
 	public void configure() throws Exception {
 		  from("{{routes.queuetoqueue.from}}")
-          .streamCaching()
           .log(LoggingLevel.INFO, this.getClass().getName(), "incoming employee: ${body}")
           .unmarshal(jsonDataFormat)
           .log(LoggingLevel.INFO, this.getClass().getName(), "after unmarshal employee: ${body}")
