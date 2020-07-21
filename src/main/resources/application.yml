@@ -1,0 +1,22 @@
+camel:
+  springboot:
+    shutdownTimeout: 1
+    
+spring:
+  activemq:
+    brokerUrl: tcp://localhost:61616
+    user: admin
+    password: admin
+    packages.trust-all: true
+    
+    
+routes:
+  queuetoqueue:
+    from: myactivemq:queue:new-employee
+    to: myactivemq:queue:employee-register
+  queuetotopic:
+    from: myactivemq:queue:employee-register
+    to: myactivemq:topic:VirtualTopic.Register
+    to2: myactivemq:queue:employee-payroll
+
+    
